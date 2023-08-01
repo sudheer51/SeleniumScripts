@@ -14,16 +14,15 @@ public class ScheduleAppointmentTests extends BaseClass {
 
 	@Test(description="Validate the schedule appointment for a doctor")
 	public void TC_003_validate_book_appointment()
-	{
-		launchBrowser("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
-		driver.findElement(By.id("username")).sendKeys("ria1");
-		driver.findElement(By.id("password")).sendKeys("Ria12345");
-		driver.findElement(By.name("submit")).click();
-		driver.findElement(By.xpath("//span[contains(text(),'Schedule Appointment')]")).click();
+	{	
+		MMPLibrary mmpLib = new MMPLibrary(driver);
+		mmpLib.launchBrowser("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
+		mmpLib.login();
+
 		driver.findElement(By.cssSelector("input[value='Create new appointment']")).click();
 		//(//button[@id='opener'])[4]
 		driver.findElement(By.xpath("//h4[contains(.,'Charlie')]/ancestor::ul/following-sibling::button")).click();
-		
+
 		driver.switchTo().frame("myframe");
 		String expectedDate = "08/16/2023";
 		driver.findElement(By.id("datepicker")).sendKeys(expectedDate);
@@ -32,23 +31,23 @@ public class ScheduleAppointmentTests extends BaseClass {
 		timeSelect.selectByValue("12Pm");
 		driver.findElement(By.id("ChangeHeatName")).click();
 		driver.switchTo().defaultContent();
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		WebElement symWE = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sym")));
 		symWE.sendKeys("Fever and Cold");
-		
-		
+
+
 		driver.findElement(By.cssSelector("input[value='Submit']")).click();
 		String actualDate = driver.findElement(By.xpath("//table[@class='table']/tbody/tr[1]/td[1]")).getText();
 		SoftAssert sa = new SoftAssert();
 		sa.assertEquals(actualDate, expectedDate);
 		sa.assertAll();
-		
+
 		//time
 		//doctor
 		//sym
-		
-		
+
+
 	}
-	
+
 }

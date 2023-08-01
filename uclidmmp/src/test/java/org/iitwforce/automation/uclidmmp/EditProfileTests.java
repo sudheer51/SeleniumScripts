@@ -5,6 +5,8 @@ import java.util.Random;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,23 +15,32 @@ public class EditProfileTests extends BaseClass{
 	@Test(description="Validate the Edit functionality in the profile page")
 	public void TC_004_validate_book_appointment()
 	{
-		launchBrowser("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
-		driver.findElement(By.id("username")).sendKeys("ria1");
-		driver.findElement(By.id("password")).sendKeys("Ria12345");
-		driver.findElement(By.name("submit")).click();
+		MMPLibrary mmpLib = new MMPLibrary(driver);
+		mmpLib.launchBrowser("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
+		mmpLib.login();
 		driver.findElement(By.xpath("//span[contains(text(),'Profile')]")).click();
 		System.out.println("To check the Textbox is nonEditable" + driver.findElement(By.id("fname")).isEnabled());
 		driver.findElement(By.id("Ebtn")).click();
 
 		//set a new value for FirstName textbox
 		driver.findElement(By.id("fname")).clear();
-		String expected = randomString("IITWFFname");
+		String expected = randomString("iitwforce");
+		
+		
+		Actions action = new Actions(driver);
+		action.keyDown(driver.findElement(By.id("fname")),Keys.SHIFT);
+		action.sendKeys(expected);
+		action.keyUp(Keys.SHIFT);
+		action.build().perform();
+		
+		
 		driver.findElement(By.id("fname")).sendKeys(expected);
 		driver.findElement(By.id("Sbtn")).click();
 		Alert alert  = driver.switchTo().alert();
 		alert.accept();
 		String actual = driver.findElement(By.id("fname")).getAttribute("value");
 		Assert.assertEquals(actual, expected);
+		
 
 
 
@@ -40,11 +51,9 @@ public class EditProfileTests extends BaseClass{
 	{
 		HashMap<String,String> expectedHMap = new HashMap<String,String>();
 		HashMap<String,String> actualHMap = new HashMap<String,String>();
-
-		launchBrowser("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
-		driver.findElement(By.id("username")).sendKeys("ria1");
-		driver.findElement(By.id("password")).sendKeys("Ria12345");
-		driver.findElement(By.name("submit")).click();
+		MMPLibrary mmpLib = new MMPLibrary(driver);
+		mmpLib.launchBrowser("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
+		mmpLib.login();
 		driver.findElement(By.xpath("//span[contains(text(),'Profile')]")).click();
 		driver.findElement(By.id("Ebtn")).click();
 

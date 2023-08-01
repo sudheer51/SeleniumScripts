@@ -13,9 +13,8 @@ public class LoginTests extends BaseClass {
 	{
 		launchBrowser("http://162.144.124.67/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
 		String expected="Patient Portal";
-		driver.findElement(By.id("username")).sendKeys("ria1");
-		driver.findElement(By.id("password")).sendKeys("Ria12345");
-		driver.findElement(By.name("submit")).click();
+		MMPLibrary mmpLib = new MMPLibrary(driver);
+		mmpLib.login();
 		String actual = driver.findElement(By.xpath("//h3[@class='panel-title']")).getText().trim();
 		Assert.assertEquals(actual, expected); 
 	
@@ -26,11 +25,10 @@ public class LoginTests extends BaseClass {
 	{
 		launchBrowser("http://162.144.124.67/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
 		String expected="Patient Portal";
-		driver.findElement(By.id("username")).sendKeys("ria1");
-		driver.findElement(By.id("password")).sendKeys("Ria12345");
-		driver.findElement(By.name("submit")).click();
+	
 		String actual = driver.findElement(By.xpath("//h3[@class='panel-title']")).getText().trim();
-		 
+		MMPLibrary mmpLib = new MMPLibrary(driver);
+		mmpLib.login();
 		SoftAssert sa = new SoftAssert();
 		sa.assertEquals(actual, expected); 
 		sa.assertTrue(driver.findElement(By.xpath("//span[contains(text(),'ABC')]")).isDisplayed());

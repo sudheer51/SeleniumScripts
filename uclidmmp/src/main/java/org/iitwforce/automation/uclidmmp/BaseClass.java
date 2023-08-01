@@ -19,8 +19,5 @@ public class BaseClass {
 		driver.manage().window().maximize();
 		 
 	}
-	public void launchBrowser(String url)
-	{
-		driver.get(url);
-	}
+ 
 }
