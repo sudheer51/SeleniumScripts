@@ -1,8 +1,17 @@
 package org.iitwforce.automation.uclidmmp;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class AppLibrary {
 
@@ -32,4 +41,67 @@ public class AppLibrary {
 //		System.out.println(dateArr[2]);
 		return expected;
 	}
+	public static String[][] readXLSX(String fileName) throws IOException
+	//public static void main(String args[]) throws IOException
+	{
+	
+		File f = new File(fileName);
+		FileInputStream fis = new FileInputStream(f.getAbsolutePath());
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		XSSFSheet sheet=	  wb.getSheetAt(0);
+		int rows = sheet.getLastRowNum();
+		int cols = sheet.getRow(0).getPhysicalNumberOfCells();
+		String data[][] = new String[rows][cols];
+		for(int r=0;r<rows;r++)
+		{
+			XSSFRow row = sheet.getRow(r);
+
+			for(int c = 0; c < cols; c++) {
+
+				XSSFCell cell = row.getCell(c);
+				if(cell!=null)
+				{
+					String cdata = cell.getStringCellValue();
+					data[r][c] = cdata;
+				}
+				else
+				{
+					data[r][c] = "";
+				}
+				System.out.println(data[r][c] );
+			}
+
+		}
+	return data;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
