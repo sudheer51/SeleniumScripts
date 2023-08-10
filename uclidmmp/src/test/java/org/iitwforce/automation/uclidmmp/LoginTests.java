@@ -2,6 +2,9 @@ package org.iitwforce.automation.uclidmmp;
 
 import java.io.IOException;
 
+import org.iitwforce.lib.AppLibrary;
+import org.iitwforce.lib.BaseClass;
+import org.iitwforce.mmp.MMPLibrary;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;

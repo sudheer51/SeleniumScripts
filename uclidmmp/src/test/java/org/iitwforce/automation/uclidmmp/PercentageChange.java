@@ -2,6 +2,7 @@ package org.iitwforce.automation.uclidmmp;
 
 import java.util.List;
 
+import org.iitwforce.lib.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;

@@ -1,5 +1,6 @@
 package org.iitwforce.automation.uclidmmp;
 
+import org.iitwforce.lib.BaseClass;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;

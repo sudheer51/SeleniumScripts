@@ -1,4 +1,4 @@
-package org.iitwforce.automation.uclidmmp;
+package org.iitwforce.lib;
 
 import java.io.File;
 import java.io.FileInputStream;
