@@ -19,7 +19,7 @@ public class ScheduleAppointmentTests extends BaseClass {
 	{	
 		MMPLibrary mmpLib = new MMPLibrary(driver);
 		mmpLib.launchBrowser("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
-		mmpLib.login();
+		mmpLib.login("ria1","Ria12345");
 
 		driver.findElement(By.cssSelector("input[value='Create new appointment']")).click();
 		//(//button[@id='opener'])[4]

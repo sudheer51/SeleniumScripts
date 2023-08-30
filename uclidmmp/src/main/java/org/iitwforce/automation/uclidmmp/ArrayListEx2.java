@@ -12,7 +12,7 @@ public class ArrayListEx2 {
 		
 		ArrayList<String> aList = new ArrayList<String>();
 		aList.add("selenium");
-		aList.add(10.0f);
+	//	aList.add(10.0);
 		System.out.println("Total count of List " + aList.size());
 		System.out.println("First value stored in the List" + aList.get(0));
 		

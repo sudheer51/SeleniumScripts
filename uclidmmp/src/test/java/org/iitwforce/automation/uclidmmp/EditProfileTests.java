@@ -19,7 +19,7 @@ public class EditProfileTests extends BaseClass{
 	{
 		MMPLibrary mmpLib = new MMPLibrary(driver);
 		mmpLib.launchBrowser("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
-		mmpLib.login();
+		mmpLib.login("","");
 		driver.findElement(By.xpath("//span[contains(text(),'Profile')]")).click();
 		System.out.println("To check the Textbox is nonEditable" + driver.findElement(By.id("fname")).isEnabled());
 		driver.findElement(By.id("Ebtn")).click();
@@ -55,7 +55,7 @@ public class EditProfileTests extends BaseClass{
 		HashMap<String,String> actualHMap = new HashMap<String,String>();
 		MMPLibrary mmpLib = new MMPLibrary(driver);
 		mmpLib.launchBrowser("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
-		mmpLib.login();
+		mmpLib.login("","");
 		driver.findElement(By.xpath("//span[contains(text(),'Profile')]")).click();
 		driver.findElement(By.id("Ebtn")).click();
 
